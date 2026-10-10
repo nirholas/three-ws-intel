@@ -1,0 +1,55 @@
+{
+	"name": "@three-ws/intel",
+	"version": "0.1.3",
+	"description": "Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK.",
+	"type": "module",
+	"main": "./src/index.js",
+	"module": "./src/index.js",
+	"types": "./src/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./src/index.d.ts",
+			"import": "./src/index.js",
+			"default": "./src/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"src",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"test": "node --test test/*.test.js"
+	},
+	"keywords": [
+		"sentiment",
+		"market-intelligence",
+		"solana",
+		"token-snapshot",
+		"aixbt",
+		"narrative",
+		"momentum",
+		"pump.fun",
+		"x402",
+		"three.ws",
+		"ai-agents"
+	],
+	"author": "nirholas <support@three.ws>",
+	"license": "Apache-2.0",
+	"homepage": "https://nirholas.github.io/three-ws-intel/",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nirholas/three-ws-intel.git"
+	},
+	"bugs": {
+		"url": "https://github.com/nirholas/three-ws-intel/issues"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"dependencies": {},
+	"publishConfig": {
+		"access": "public"
+	}
+}

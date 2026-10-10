@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@three-ws/intel: Token sentiment + market intelligence in one import</title>
+<meta name="description" content="Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK.">
+<link rel="canonical" href="https://nirholas.github.io/three-ws-intel/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="three.ws">
+<meta property="og:title" content="@three-ws/intel">
+<meta property="og:description" content="Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK.">
+<meta property="og:url" content="https://nirholas.github.io/three-ws-intel/">
+<meta property="og:image" content="https://nirholas.github.io/three-ws-intel/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@three-ws/intel">
+<meta name="twitter:description" content="Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK.">
+<meta name="twitter:image" content="https://nirholas.github.io/three-ws-intel/og.png">
+<meta name="keywords" content="sentiment, market-intelligence, solana, token-snapshot, aixbt, narrative, momentum, pump.fun, x402, three.ws, ai-agents">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<link rel="icon" href="https://three.ws/three-ws-mcp-icon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@three-ws/intel","description":"Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK.","codeRepository":"https://github.com/nirholas/three-ws-intel","programmingLanguage":"JavaScript","license":"https://spdx.org/licenses/Apache-2.0.html","version":"0.1.3","url":"https://nirholas.github.io/three-ws-intel/","author":{"@type":"Organization","name":"three.ws","url":"https://three.ws"},"keywords":"sentiment, market-intelligence, solana, token-snapshot, aixbt, narrative, momentum, pump.fun, x402, three.ws, ai-agents"}</script>
+<style>:root{--bg:#fff;--fg:#111418;--mut:#586069;--line:#e3e6ea;--acc:#2563eb;--code:#f4f6f8;--card:#fafbfc}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0d10;--fg:#e8eaed;--mut:#9aa3ad;--line:#232830;--acc:#6ea0ff;--code:#14181d;--card:#10141a}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc)}a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
+header.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:700;text-decoration:none;color:var(--fg)}
+.bar nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+.bar nav a{color:var(--mut);text-decoration:none;transition:color .15s}.bar nav a:hover{color:var(--fg)}
+.hero{max-width:1100px;margin:0 auto;padding:48px 16px 24px}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{color:var(--mut);max-width:70ch;font-size:18px;margin:0 0 24px}
+.install{display:flex;align-items:center;gap:8px;max-width:620px;background:var(--code);border:1px solid var(--line);border-radius:10px;padding:6px 6px 6px 14px}
+.install code{flex:1;overflow-x:auto;white-space:nowrap;font:14px ui-monospace,SFMono-Regular,Menlo,monospace}
+.install button{border:0;background:var(--acc);color:#fff;border-radius:7px;padding:8px 14px;font:600 13px system-ui;cursor:pointer;transition:transform .12s,opacity .12s}
+.install button:hover{opacity:.9}.install button:active{transform:scale(.96)}
+.cta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.cta a{padding:9px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;color:var(--fg);transition:border-color .15s,transform .15s}
+.cta a:hover{border-color:var(--acc);transform:translateY(-1px)}.cta a.pri{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.layout{max-width:1100px;margin:0 auto;padding:8px 16px 64px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:40px}
+@media(max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}.toc{display:none}}
+.toc{position:sticky;top:76px;align-self:start;font-size:14px;border-left:1px solid var(--line);padding-left:16px}
+.toc p{margin:0 0 8px;font-weight:700;color:var(--mut);text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+.toc ul{list-style:none;margin:0;padding:0}.toc li{margin:6px 0}.toc a{color:var(--mut);text-decoration:none}.toc a:hover{color:var(--fg)}
+main{min-width:0;overflow-wrap:anywhere}main pre code{overflow-wrap:normal}main img{max-width:100%;height:auto}
+main h2{margin-top:2.2em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+.anchor{margin-left:-1.1em;padding-right:.4em;text-decoration:none;opacity:0;color:var(--mut)}h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:14px;line-height:1.5}
+code{font:0.9em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--code);padding:.15em .35em;border-radius:5px}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}th,td{border:1px solid var(--line);padding:8px 12px;text-align:left}th{background:var(--card)}
+blockquote{margin:1em 0;padding:.2em 1em;border-left:4px solid var(--line);color:var(--mut)}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.foot-in{max-width:1100px;margin:0 auto;padding:24px 16px;display:flex;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+<a class="brand" href="https://nirholas.github.io/three-ws-intel/">@three-ws/intel</a>
+<nav aria-label="Project links"><a href="https://github.com/nirholas/three-ws-intel">GitHub</a><a href="https://www.npmjs.com/package/@three-ws/intel">npm</a><a href="llms.txt">llms.txt</a><a href="https://three.ws">three.ws</a></nav>
+</div></header>
+<section class="hero">
+<h1>@three-ws/intel</h1>
+<p>Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK.</p>
+<div class="install" role="group" aria-label="Install command"><code>npm install @three-ws/intel</code><button type="button" data-copy="npm install @three-ws/intel">Copy</button></div>
+<div class="cta"><a class="pri" href="https://github.com/nirholas/three-ws-intel">View on GitHub</a><a href="https://github.com/nirholas/three-ws-intel/stargazers">Star the repo</a></div>
+</section>
+<div class="layout">
+<main id="content"><p align="center"><strong>Token sentiment + market intelligence in one import — for agents and dashboards that need to read the market before they act.</strong></p><p align="center">
+  <a href="https://www.npmjs.com/package/@three-ws/intel"><img alt="npm" src="https://img.shields.io/npm/v/@three-ws/intel?logo=npm&color=cb3837"></a>
+  <a href="https://www.npmjs.com/package/@three-ws/intel"><img alt="downloads" src="https://img.shields.io/npm/dm/@three-ws/intel?color=cb3837"></a>
+  <img alt="license" src="https://img.shields.io/npm/l/@three-ws/intel?color=3b82f6">
+  <img alt="node" src="https://img.shields.io/node/v/@three-ws/intel?color=339933&logo=node.js">
+</p><p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#api">API</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#pricing--payment">Pricing</a> ·
+  <a href="https://three.ws">three.ws</a>
+</p><hr>
+<blockquote>
+<p><code>@three-ws/intel</code> is the official client for the three.ws <strong>market intelligence</strong>
+surface — four reads that tell you what a token is <em>worth</em>, what people are
+<em>saying</em> about it, and where attention is <em>flowing</em>. It wraps four live
+endpoints: a deterministic <strong>sentiment pulse</strong> over pump.fun commentary, the
+<strong>aixbt narrative intel</strong> feed, <strong>momentum-ranked project scans</strong>, and a
+real-time <strong>Solana token snapshot</strong> (price, volume, holders, metadata). The
+sentiment endpoint is public and key-free; the aixbt and snapshot lanes are
+exposed as paid MCP tools settled in USDC over <a href="https://x402.org">x402</a>. It
+pairs with <a href="https://www.npmjs.com/package/@three-ws/forge"><code>@three-ws/forge</code></a> —
+Forge <em>makes</em> assets, Intel <em>reads</em> the market they trade into.</p>
+</blockquote>
+<h2 id="why"><a class="anchor" href="#why" aria-label="Link to this section">#</a>Why</h2>
+<p>Reading a token means stitching together five providers — pump.fun comments,
+Jupiter price, Dexscreener volume, Solana RPC holder distribution, and a
+narrative source — then normalizing five different payload shapes, handling each
+one&#39;s rate limits, and scoring sentiment yourself. Intel does that once:</p>
+<ul>
+<li><strong>One import, four reads.</strong> <code>sentiment(mint)</code>, <code>intel(query)</code>, <code>projects()</code>,
+<code>snapshot(mint)</code> — each a single call returning a stable, normalized shape.</li>
+<li><strong>Real data, no fakes.</strong> Every field comes from a live source. If a provider
+is unreachable, the field is <code>null</code> so you see the gap — never a fabricated
+number.</li>
+<li><strong>Sentiment that&#39;s reproducible.</strong> The pulse uses a deterministic lexicon
+scorer, not an opaque model, so the same comments always yield the same score.</li>
+<li><strong>Narrative + momentum in one place.</strong> The aixbt bridge surfaces what&#39;s being
+said (<code>intel</code>) and what&#39;s spiking (<code>projects</code>) without you holding an aixbt
+key — it stays server-side.</li>
+</ul>
+<p>This is the SDK twin of the <a href="https://three.ws/mcp">3D Studio MCP server</a> — the
+same <code>sentiment_pulse</code>, <code>aixbt_intel</code>, <code>aixbt_projects</code>, and <code>pump_snapshot</code>
+tools, exposed as plain functions instead of MCP calls.</p>
+<h2 id="install"><a class="anchor" href="#install" aria-label="Link to this section">#</a>Install</h2>
+<pre><code class="language-bash">npm install @three-ws/intel
+</code></pre>
+<p>Zero runtime dependencies. Works in Node 18+ and the browser (uses <code>fetch</code>). To
+auto-pay the paid lanes (aixbt + snapshot), add
+<a href="https://www.npmjs.com/package/@three-ws/x402-fetch"><code>@three-ws/x402-fetch</code></a>.</p>
+<h2 id="quick-start"><a class="anchor" href="#quick-start" aria-label="Link to this section">#</a>Quick start</h2>
+<p>The sentiment lane is public — no key, no wallet:</p>
+<pre><code class="language-js">import { sentiment } from &#39;@three-ws/intel&#39;;
+
+const pulse = await sentiment(&#39;FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump&#39;); // $THREE
+
+console.log(pulse.overall.score);   // → 0.42  (range -1 … 1)
+console.log(pulse.overall.posPct);  // → 58
+console.log(pulse.breakdown.pumpfun.count); // comments scored
+</code></pre>
+<p>A fuller read — narrative, momentum, and an on-chain snapshot together:</p>
+<pre><code class="language-js">import { intel, projects, snapshot } from &#39;@three-ws/intel&#39;;
+
+const narrative = await intel({ chain: &#39;solana&#39;, limit: 10 });
+const hot       = await projects({ chain: &#39;solana&#39;, limit: 10 });
+const market    = await snapshot(&#39;THREEsynthetic1111111111111111111111111111&#39;);
+
+console.log(narrative.intel[0].description);  // what&#39;s being said
+console.log(hot.projects[0].scores.spiking);  // momentum rank
+console.log(market.priceUsd, market.holders.topHolderCount);
+</code></pre>
+<p>Fold your own signals (e.g. X cashtag posts you collected) into the pulse:</p>
+<pre><code class="language-js">const pulse = await sentiment(&#39;FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump&#39;, {
+  limit: 150,
+  extraTexts: [&#39;$THREE volume ripping today&#39;, &#39;best 3D agent stack on Solana&#39;],
+});
+console.log(pulse.breakdown.extra.score); // score of just your snippets
+</code></pre>
+<h2 id="api"><a class="anchor" href="#api" aria-label="Link to this section">#</a>API</h2>
+<p>Public exports: <code>sentiment</code>, <code>intel</code>, <code>projects</code>, <code>snapshot</code>, <code>createIntel</code>,
+<code>ThreeWsError</code>, <code>PaymentRequiredError</code>, and <code>DEFAULT_BASE_URL</code>. The four reads
+use a shared zero-config client; <code>createIntel({ baseUrl, fetch, apiKey, headers })</code> builds your own when you need a payment-aware fetch for the paid
+lanes or a custom origin reused across calls.</p>
+<h3 id="sentimentmint-options-promisesentimentpulse"><a class="anchor" href="#sentimentmint-options-promisesentimentpulse" aria-label="Link to this section">#</a><code>sentiment(mint, options?) → Promise&lt;SentimentPulse&gt;</code></h3>
+<p>Real-time sentiment pulse for a Solana token. Pulls recent pump.fun comments via
+<code>frontend-api-v3</code>, optionally folds in caller-supplied snippets, and scores the
+combined stream with the three.ws deterministic lexicon. Wraps
+<code>POST /api/social/sentiment-pulse</code>. <strong>Public — no key required.</strong></p>
+<p><strong>Options</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>limit</code></td>
+<td><code>number</code></td>
+<td><code>100</code></td>
+<td>Max pump.fun comments to fetch + score (1–200).</td>
+</tr>
+<tr>
+<td><code>extraTexts</code></td>
+<td><code>string[]</code></td>
+<td><code>[]</code></td>
+<td>Up to 200 extra snippets (≤2000 chars each) to score alongside.</td>
+</tr>
+</tbody></table>
+<p><strong>Returns</strong> <code>SentimentPulse</code></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ok</code></td>
+<td><code>true</code></td>
+<td>Present on success.</td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><code>string</code></td>
+<td>The mint you queried.</td>
+</tr>
+<tr>
+<td><code>overall</code></td>
+<td><code>Score</code></td>
+<td>Combined score over comments + extras.</td>
+</tr>
+<tr>
+<td><code>breakdown.pumpfun</code></td>
+<td><code>Score</code></td>
+<td>Just the pump.fun comments (or <code>{ error, count: 0 }</code> if the source failed).</td>
+</tr>
+<tr>
+<td><code>breakdown.extra</code></td>
+<td><code>Score</code></td>
+<td>Just your <code>extraTexts</code>.</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td><code>object</code></td>
+<td><code>{ pumpfun, pumpfunCount, extraCount }</code>.</td>
+</tr>
+<tr>
+<td><code>fetchedAt</code></td>
+<td><code>string</code></td>
+<td>ISO timestamp.</td>
+</tr>
+</tbody></table>
+<p>A <code>Score</code> is <code>{ score, posPct, negPct, neuPct, count, examples }</code> — <code>score</code> runs
+<code>-1 … 1</code>, the <code>*Pct</code> fields sum to 100, and <code>examples</code> carries <code>{ pos, neg }</code>
+representative lines.</p>
+<h3 id="intelquery-promiseintelfeed"><a class="anchor" href="#intelquery-promiseintelfeed" aria-label="Link to this section">#</a><code>intel(query?) → Promise&lt;IntelFeed&gt;</code></h3>
+<p>aixbt narrative intelligence feed — recent intel items detected across crypto.
+Wraps <code>GET /api/aixbt/intel</code>. <strong>Paid via the <code>aixbt_intel</code> MCP tool ($0.01).</strong></p>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>limit</code></td>
+<td><code>number</code></td>
+<td><code>20</code></td>
+<td>Items to return (1–100; the bridge caps the upstream call at 50).</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><code>string</code></td>
+<td>—</td>
+<td>Filter to one aixbt intel category.</td>
+</tr>
+<tr>
+<td><code>chain</code></td>
+<td><code>string</code></td>
+<td>—</td>
+<td>Filter to a chain, e.g. <code>solana</code>, <code>base</code>, <code>ethereum</code>.</td>
+</tr>
+</tbody></table>
+<p><strong>Returns</strong> <code>{ intel: IntelItem[], pagination }</code>, where each <code>IntelItem</code> is
+<code>{ category, description, detected_at, reinforced_at, observations, official_source, project, ticker, source }</code>.</p>
+<h3 id="projectsquery-promiseprojectscan"><a class="anchor" href="#projectsquery-promiseprojectscan" aria-label="Link to this section">#</a><code>projects(query?) → Promise&lt;ProjectScan&gt;</code></h3>
+<p>aixbt momentum scan — projects ranked by spiking / climbing / active scores, with
+market metrics and recent intel per project. Wraps <code>GET /api/aixbt/projects</code>.
+<strong>Paid via the <code>aixbt_projects</code> MCP tool ($0.01).</strong></p>
+<p><strong>Query</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>limit</code></td>
+<td><code>number</code></td>
+<td><code>20</code></td>
+<td>Projects to return (1–100; upstream capped at 50).</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>number</code></td>
+<td><code>1</code></td>
+<td>Page of the ranked list (1–100).</td>
+</tr>
+<tr>
+<td><code>names</code></td>
+<td><code>string</code></td>
+<td>—</td>
+<td>Comma-separated names/tickers to filter to.</td>
+</tr>
+<tr>
+<td><code>chain</code></td>
+<td><code>string</code></td>
+<td>—</td>
+<td>Filter to a chain.</td>
+</tr>
+</tbody></table>
+<p><strong>Returns</strong> <code>{ projects: Project[], pagination }</code>. Each <code>Project</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code> / <code>name</code> / <code>ticker</code></td>
+<td><code>string</code></td>
+<td>Identity.</td>
+</tr>
+<tr>
+<td><code>x_handle</code></td>
+<td><code>string | null</code></td>
+<td>Project X handle.</td>
+</tr>
+<tr>
+<td><code>address</code> / <code>chain</code></td>
+<td><code>string | null</code></td>
+<td>Primary token address + chain.</td>
+</tr>
+<tr>
+<td><code>scores</code></td>
+<td><code>{ spiking, climbing, active }</code></td>
+<td>aixbt momentum scores.</td>
+</tr>
+<tr>
+<td><code>trajectory</code></td>
+<td><code>string | null</code></td>
+<td>Spiking/climbing trajectory note.</td>
+</tr>
+<tr>
+<td><code>market</code></td>
+<td><code>{ price_usd, market_cap, volume_24h, change_24h }</code></td>
+<td>Live metrics (<code>null</code> where unavailable).</td>
+</tr>
+<tr>
+<td><code>intel</code></td>
+<td><code>IntelItem[]</code></td>
+<td>Up to 10 recent intel items for the project.</td>
+</tr>
+<tr>
+<td><code>categories</code></td>
+<td><code>string[]</code></td>
+<td>CoinGecko categories.</td>
+</tr>
+</tbody></table>
+<h3 id="snapshotmint-promisetokensnapshot"><a class="anchor" href="#snapshotmint-promisetokensnapshot" aria-label="Link to this section">#</a><code>snapshot(mint) → Promise&lt;TokenSnapshot&gt;</code></h3>
+<p>Live market snapshot for any Solana SPL or pump.fun token. Generic plumbing — it
+takes whatever mint you pass at runtime. Wraps the <code>pump_snapshot</code> MCP tool.
+<strong>Paid ($0.005).</strong></p>
+<p><strong>Returns</strong> <code>TokenSnapshot</code></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>token</code></td>
+<td><code>string</code></td>
+<td>The mint.</td>
+</tr>
+<tr>
+<td><code>priceUsd</code></td>
+<td><code>number | null</code></td>
+<td>USD price (Jupiter, falling back to Dexscreener).</td>
+</tr>
+<tr>
+<td><code>priceSource</code></td>
+<td><code>&#39;jupiter&#39; | &#39;dexscreener&#39; | null</code></td>
+<td>Which source priced it.</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td><code>object</code></td>
+<td>Jupiter detail: <code>{ usdPrice, priceChange24hPct, liquidityUsd, decimals, blockId }</code>.</td>
+</tr>
+<tr>
+<td><code>volume24h</code></td>
+<td><code>object</code></td>
+<td>Dexscreener: <code>{ volume24hUsd, dex, pairAddress, url, marketCapUsd, … }</code>.</td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>pump.fun metadata: <code>{ name, symbol, imageUrl, creator, marketCapUsd, … }</code>.</td>
+</tr>
+<tr>
+<td><code>holders</code></td>
+<td><code>object</code></td>
+<td><code>{ topHolderCount, topHolders[] }</code> from Solana RPC <code>getTokenLargestAccounts</code>.</td>
+</tr>
+<tr>
+<td><code>helius</code></td>
+<td><code>object | null</code></td>
+<td>Supply/decimals/price from Helius DAS when <code>HELIUS_API_KEY</code> is set.</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td><code>string | null</code></td>
+<td>Token image.</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td><code>object</code></td>
+<td>The exact upstream URLs each field came from.</td>
+</tr>
+<tr>
+<td><code>fetchedAt</code></td>
+<td><code>string</code></td>
+<td>ISO timestamp.</td>
+</tr>
+</tbody></table>
+<h2 id="how-it-works"><a class="anchor" href="#how-it-works" aria-label="Link to this section">#</a>How it works</h2>
+<p>Four independent reads, each fronting a normalized aggregate. The aixbt key and
+all provider keys live server-side — the SDK never holds them.</p>
+<pre><code>  sentiment(mint) ─▶ POST /api/social/sentiment-pulse
+                       └─ pump.fun frontend-api-v3 replies → lexicon scorer
+
+  intel(query)    ─▶ GET  /api/aixbt/intel ─┐
+  projects(query) ─▶ GET  /api/aixbt/projects ┴─▶ aixbt REST v2 (key server-side)
+
+  snapshot(mint)  ─▶ pump_snapshot (x402) ─┬─ Jupiter Lite      → price
+                                           ├─ Dexscreener       → volume + pair
+                                           ├─ pump.fun api-v3    → name/image/mcap
+                                           ├─ Solana RPC         → top holders
+                                           └─ Helius DAS (opt)   → exact supply
+</code></pre>
+<ul>
+<li><strong>Sentiment</strong> is deterministic: the same comments always produce the same
+score. The pulse fetches the most recent batch from pump.fun and scores
+positive/negative term matches — no model, no randomness.</li>
+<li><strong>Narrative + momentum</strong> ride the three.ws ⇄ aixbt bridge. aixbt wraps its
+reads as <code>{ status, data, pagination }</code>; the bridge unwraps and normalizes them
+into the lean shapes above so an upstream change never ripples into your code.</li>
+<li><strong>Snapshot</strong> fans out to five sources in parallel and stitches the results.
+Price has a built-in fallback (Jupiter → Dexscreener) so the single most
+important field has two independent backers.</li>
+</ul>
+<h2 id="pricing-payment"><a class="anchor" href="#pricing-payment" aria-label="Link to this section">#</a>Pricing &amp; payment</h2>
+<p>The sentiment lane is genuinely free — it relies only on public pump.fun data
+and an in-repo scorer. The aixbt and snapshot lanes are flat per-call prices,
+quoted in USDC and settled <code>exact</code> on Solana mainnet over <a href="https://x402.org">x402</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Tool</th>
+<th>Price</th>
+<th>Lane</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sentiment()</code></td>
+<td><code>sentiment_pulse</code></td>
+<td><strong>free</strong> over the public endpoint¹</td>
+<td>pump.fun + lexicon</td>
+</tr>
+<tr>
+<td><code>intel()</code></td>
+<td><code>aixbt_intel</code></td>
+<td><strong>$0.01</strong> USDC</td>
+<td>aixbt bridge</td>
+</tr>
+<tr>
+<td><code>projects()</code></td>
+<td><code>aixbt_projects</code></td>
+<td><strong>$0.01</strong> USDC</td>
+<td>aixbt bridge</td>
+</tr>
+<tr>
+<td><code>snapshot()</code></td>
+<td><code>pump_snapshot</code></td>
+<td><strong>$0.005</strong> USDC</td>
+<td>multi-provider</td>
+</tr>
+</tbody></table>
+<p>¹ The <code>sentiment_pulse</code> MCP tool is priced at <strong>$0.003 USDC</strong> for agent callers;
+the underlying <code>POST /api/social/sentiment-pulse</code> HTTP endpoint this SDK targets
+is public and key-free. Pair with
+<a href="https://www.npmjs.com/package/@three-ws/x402-fetch"><code>@three-ws/x402-fetch</code></a> to
+automate the 402 settlement on the paid calls.</p>
+<h2 id="errors-edge-cases"><a class="anchor" href="#errors-edge-cases" aria-label="Link to this section">#</a>Errors &amp; edge cases</h2>
+<p>Every state is designed — a missing key or an unreachable provider returns a
+typed state, never a crash or a fake number.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>HTTP</th>
+<th>Where</th>
+<th>Meaning &amp; recovery</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>validation_error</code></td>
+<td>400</td>
+<td>sentiment</td>
+<td><code>token</code> isn&#39;t a base58 mint, or body is malformed. Fix the input.</td>
+</tr>
+<tr>
+<td><code>aixbt_not_configured</code></td>
+<td>503</td>
+<td>intel / projects</td>
+<td>Deployment has no <code>AIXBT_API_KEY</code>. Response carries a <code>setup</code> hint pointing at the aixbt key pass.</td>
+</tr>
+<tr>
+<td><code>aixbt_unauthorized</code></td>
+<td>503</td>
+<td>intel / projects</td>
+<td>aixbt rejected the deployment&#39;s key (expired, revoked, or below the required plan). Rotate it. Carries the same <code>setup</code> hint as <code>aixbt_not_configured</code>.</td>
+</tr>
+<tr>
+<td><code>aixbt_rate_limited</code></td>
+<td>429</td>
+<td>intel / projects</td>
+<td>aixbt throttled the bridge. Back off and retry.</td>
+</tr>
+<tr>
+<td><code>aixbt_upstream_error</code></td>
+<td>502/504</td>
+<td>intel / projects</td>
+<td>aixbt was unreachable or errored. Retry.</td>
+</tr>
+<tr>
+<td><code>invalid_mint</code></td>
+<td>—</td>
+<td>snapshot</td>
+<td><code>token</code> isn&#39;t a valid Solana pubkey. Fix it.</td>
+</tr>
+<tr>
+<td><code>payment_required</code></td>
+<td>402 or 401</td>
+<td>intel / projects / snapshot</td>
+<td>Paid lane with no x402 payment; rejects with <code>PaymentRequiredError</code> carrying the challenge in <code>accepts</code>. The MCP transport behind <code>snapshot()</code> quotes its challenge over HTTP 401 (x402Version + accepts in the body); the SDK maps both to the same typed error. Attach a payer (see <a href="#pricing--payment">Pricing</a>).</td>
+</tr>
+<tr>
+<td>field <code>= null</code></td>
+<td>200</td>
+<td>snapshot</td>
+<td>A provider was unreachable. The field is <code>null</code> and <code>sources</code> shows which one — partial data, never fabricated.</td>
+</tr>
+</tbody></table>
+<p>In the sentiment pulse, a pump.fun failure doesn&#39;t fail the whole call:
+<code>breakdown.pumpfun</code> becomes <code>{ error, count: 0 }</code> and the overall score reflects
+whatever did resolve (e.g. just your <code>extraTexts</code>). Branch on it in your UI.</p>
+<h2 id="examples"><a class="anchor" href="#examples" aria-label="Link to this section">#</a>Examples</h2>
+<p><strong>Agent decision gate</strong> — read sentiment + momentum before acting:</p>
+<pre><code class="language-js">import { sentiment, projects } from &#39;@three-ws/intel&#39;;
+
+const mint = &#39;FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump&#39;; // $THREE
+const [pulse, scan] = await Promise.all([
+  sentiment(mint),
+  projects({ chain: &#39;solana&#39;, limit: 5 }),
+]);
+
+const bullish = pulse.overall.score &gt; 0.2 &amp;&amp; pulse.overall.count &gt;= 20;
+const trending = scan.projects.some((p) =&gt; (p.scores.spiking ?? 0) &gt; 0.8);
+if (bullish &amp;&amp; trending) console.log(&#39;signal: attention + positive chatter&#39;);
+</code></pre>
+<p><strong>Dashboard tile</strong> — render a live token card in the browser:</p>
+<pre><code class="language-html">&lt;script type=&quot;module&quot;&gt;
+  import { snapshot, sentiment } from &#39;@three-ws/intel&#39;;
+
+  const mint = &#39;THREEsynthetic1111111111111111111111111111&#39;;
+  const [m, s] = await Promise.all([snapshot(mint), sentiment(mint)]);
+
+  document.querySelector(&#39;#card&#39;).innerHTML = `
+    &lt;h3&gt;${m.meta?.name ?? &#39;Token&#39;} · ${m.meta?.symbol ?? &#39;—&#39;}&lt;/h3&gt;
+    &lt;p&gt;$${m.priceUsd ?? &#39;—&#39;} · vol $${m.volume24h?.volume24hUsd ?? &#39;—&#39;}&lt;/p&gt;
+    &lt;p&gt;sentiment ${Math.round(s.overall.posPct)}% positive
+       (${s.overall.count} comments)&lt;/p&gt;`;
+&lt;/script&gt;
+</code></pre>
+<p><strong>Narrative monitor</strong> — poll the intel feed for a category:</p>
+<pre><code class="language-js">import { intel } from &#39;@three-ws/intel&#39;;
+
+const feed = await intel({ category: &#39;partnership&#39;, limit: 15 });
+for (const item of feed.intel) {
+  if (item.official_source) console.log(`[${item.ticker}] ${item.description}`);
+}
+</code></pre>
+<h2 id="related"><a class="anchor" href="#related" aria-label="Link to this section">#</a>Related</h2>
+<ul>
+<li><a href="https://www.npmjs.com/package/@three-ws/forge"><code>@three-ws/forge</code></a> — generate the 3D assets that trade into these markets.</li>
+<li><a href="https://www.npmjs.com/package/@three-ws/x402-fetch"><code>@three-ws/x402-fetch</code></a> — auto-pay the aixbt + snapshot lanes in USDC.</li>
+<li><a href="https://www.npmjs.com/package/@three-ws/avatar"><code>@three-ws/avatar</code></a> — render an agent that acts on this intelligence.</li>
+</ul>
+<hr>
+<p align="center">Built by <a href="https://three.ws">three.ws</a> · The only coin is <a href="https://three.ws">$THREE</a></p>
+</main>
+<nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#why">Why</a></li><li><a href="#install">Install</a></li><li><a href="#quick-start">Quick start</a></li><li><a href="#api">API</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#pricing-payment">Pricing &amp; payment</a></li><li><a href="#errors-edge-cases">Errors &amp; edge cases</a></li><li><a href="#examples">Examples</a></li><li><a href="#related">Related</a></li></ul></nav>
+</div>
+<footer><div class="foot-in"><span>Apache-2.0 licensed</span><a href="https://github.com/nirholas/three-ws-intel/issues">Issues</a><a href="https://github.com/nirholas/three-ws-intel/blob/main/CONTRIBUTING.md">Contributing</a><a href="https://github.com/nirholas/three-ws-intel/security/policy">Security</a><a href="https://three.ws">Part of three.ws</a></div></footer>
+<script>document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+var t=b.getAttribute('data-copy');var done=function(){var o=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=o},1400)};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}
+else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}a.remove()}})});</script>
+</body>
+</html>

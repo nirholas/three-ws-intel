@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+title: "@three-ws/intel"
+abstract: "Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK."
+version: 0.1.3
+license: Apache-2.0
+repository-code: "https://github.com/nirholas/three-ws-intel"
+url: "https://three.ws"
+authors:
+  - name: three.ws
+    website: "https://three.ws"

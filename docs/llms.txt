@@ -1,0 +1,19 @@
+# @three-ws/intel
+
+> Token sentiment + market intelligence in one import. Sentiment pulse, aixbt narrative intel, momentum-ranked project scans, and live Solana token snapshots — the three.ws intelligence SDK.
+
+@three-ws/intel is a JavaScript library from three.ws. Install: `npm install @three-ws/intel`.
+
+## Docs
+
+- [README](https://github.com/nirholas/three-ws-intel/blob/main/README.md): install, configuration, full reference
+- [Documentation site](https://nirholas.github.io/three-ws-intel/): the README as a web page
+- [Full text for LLMs](https://nirholas.github.io/three-ws-intel/llms-full.txt): README inlined
+- [AGENTS.md](https://github.com/nirholas/three-ws-intel/blob/main/AGENTS.md): guidance for coding agents
+
+## Project
+
+- [Source](https://github.com/nirholas/three-ws-intel)
+- [npm](https://www.npmjs.com/package/@three-ws/intel)
+- [three.ws](https://three.ws): the platform this is part of
+- [Issues](https://github.com/nirholas/three-ws-intel/issues)
