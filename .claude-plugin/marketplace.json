@@ -7,8 +7,9 @@
   "plugins": [
     {
       "name": "three-ws-intel",
-      "source": "./",
+      "source": "./plugins/three-ws-intel",
       "description": "Token sentiment, narrative intel, momentum-ranked project scans and live Solana token snapshots with the Intel SDK.",
+      "category": "development",
       "tags": [
         "solana",
         "sentiment",
