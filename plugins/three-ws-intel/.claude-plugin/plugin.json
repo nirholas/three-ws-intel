@@ -6,6 +6,7 @@
     "name": "nirholas"
   },
   "repository": "https://github.com/nirholas/three-ws-intel",
+  "homepage": "https://nirholas.github.io/three-ws-intel/",
   "license": "Apache-2.0",
   "keywords": [
     "solana",
@@ -13,6 +14,5 @@
     "market-data",
     "sdk",
     "x402"
-  ],
-  "homepage": "https://nirholas.github.io/three-ws-intel/"
+  ]
 }
