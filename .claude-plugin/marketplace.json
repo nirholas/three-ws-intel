@@ -1,0 +1,21 @@
+{
+  "name": "three-ws-intel",
+  "owner": {
+    "name": "nirholas"
+  },
+  "description": "Token sentiment, narrative intel, momentum-ranked project scans and live Solana token snapshots with the Intel SDK.",
+  "plugins": [
+    {
+      "name": "three-ws-intel",
+      "source": "./",
+      "description": "Token sentiment, narrative intel, momentum-ranked project scans and live Solana token snapshots with the Intel SDK.",
+      "tags": [
+        "solana",
+        "sentiment",
+        "market-data",
+        "sdk",
+        "x402"
+      ]
+    }
+  ]
+}
